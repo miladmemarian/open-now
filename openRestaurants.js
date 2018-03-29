@@ -22,11 +22,11 @@ export default class OpenRestaurants extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <SearchBar handleSubmit={this.handleSubmit} />
-        <Results zipcode={this.state.zipcode} />
-      </div>
+    const zipcodeSubmitted = this.state.zipcode ? (
+      <Results zipcode={this.state.zipcode} />
+    ) : (
+      <SearchBar handleSubmit={this.handleSubmit} />
     )
+    return <div>{zipcodeSubmitted}</div>
   }
 }

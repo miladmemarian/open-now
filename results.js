@@ -22,11 +22,15 @@ const restaurants = [
 export default class Results extends Component {
   render() {
     console.log(this.props.zipcode)
-    const resultsList = restaurants.map(restaurant => (
-      <li key={restaurant.id}>
-        {restaurant.name + restaurant.formatted_address}
-      </li>
-    ))
+    const resultsList = restaurants
+      .filter(restaurant =>
+        restaurant.formatted_address.includes(this.props.zipcode)
+      )
+      .map(restaurant => (
+        <li key={restaurant.id}>
+          {restaurant.name + restaurant.formatted_address}
+        </li>
+      ))
     return (
       <div>
         Zip Code: {this.props.zipcode}
