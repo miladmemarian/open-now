@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React, { Component } from 'react'
 import SearchBar from './searchBar'
 import Results from './results'
@@ -9,7 +10,9 @@ export default class OpenRestaurants extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       zipcode: ''
+      // results: ''
     }
+    const results = []
   }
 
   handleSubmit(event) {
@@ -23,7 +26,7 @@ export default class OpenRestaurants extends Component {
 
   render() {
     const zipcodeSubmitted = this.state.zipcode ? (
-      <Results zipcode={this.state.zipcode} />
+      <Results zipcode={this.state.zipcode} results={this.props.results} />
     ) : (
       <SearchBar handleSubmit={this.handleSubmit} />
     )
