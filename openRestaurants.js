@@ -9,10 +9,9 @@ export default class OpenRestaurants extends Component {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
-      zipcode: ''
-      // results: ''
+      zipcode: '',
+      results: ''
     }
-    const results = []
   }
 
   handleSubmit(event) {
@@ -21,15 +20,33 @@ export default class OpenRestaurants extends Component {
     this.setState({
       zipcode: formData.get('zipcode')
     })
-    event.target.reset()
+    var request = {
+      query: formData.get('zipcode'),
+      open_now: true,
+      type: 'restaurant'
+    }
+    var map = new google.maps.Map(document.querySelector('#map'))
+    var service = new google.maps.places.PlacesService(map)
+    service.textSearch(request, getResult.bind(this))
+
+    function getResult(response) {
+      this.setState({
+        results: response
+      })
+    }
   }
 
   render() {
-    const zipcodeSubmitted = this.state.zipcode ? (
-      <Results zipcode={this.state.zipcode} results={this.props.results} />
+    const zipcodeSubmitted = this.state.results ? (
+      <Results zipcode={this.state.zipcode} results={this.state.results} />
     ) : (
       <SearchBar handleSubmit={this.handleSubmit} />
     )
-    return <div>{zipcodeSubmitted}</div>
+    return (
+      <div>
+        <div id="map" />
+        <div>{zipcodeSubmitted}</div>
+      </div>
+    )
   }
 }

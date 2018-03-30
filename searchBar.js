@@ -9,7 +9,7 @@ export default class SearchBar extends Component {
         <h5>Please enter your zip code</h5>
         <input name="zipcode" type="number" />
         <div>
-          <button name="Submit">Search</button>
+          <button>Search</button>
         </div>
       </form>
     )
