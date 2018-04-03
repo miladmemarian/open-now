@@ -4,11 +4,23 @@ import React, { Component } from 'react'
 
 export default class Results extends Component {
   render() {
-    const resultsList = this.props.results.map(result => (
-      <li className="list-group-item " key={result.id}>
-        {result.name + result.formatted_address}
-      </li>
-    ))
+    const resultsList = this.props.keyword
+      ? this.props.results
+        .filter(
+          result =>
+            result.formatted_address.includes(this.props.keyword) ||
+              result.name.includes(this.props.keyword)
+        )
+        .map(result => (
+          <li className="list-group-item " key={result.id}>
+            {result.name + result.formatted_address}
+          </li>
+        ))
+      : this.props.results.map(result => (
+        <li className="list-group-item " key={result.id}>
+          {result.name + result.formatted_address}
+        </li>
+      ))
 
     return (
       <div className="container-fluid">
