@@ -29,6 +29,7 @@ export default class Results extends Component {
           </div>
           <div className="col">
             <form key="Filter" onSubmit={this.props.handleFilter}>
+              <p>You can filter food places by any keyword</p>
               <input name="keyword" />
               <button>Filter</button>
             </form>
