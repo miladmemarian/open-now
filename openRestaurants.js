@@ -8,9 +8,11 @@ export default class OpenRestaurants extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleFilter = this.handleFilter.bind(this)
     this.state = {
       zipcode: '',
-      results: ''
+      results: '',
+      keyword: ''
     }
   }
 
@@ -20,6 +22,7 @@ export default class OpenRestaurants extends Component {
     this.setState({
       zipcode: formData.get('zipcode')
     })
+
     var request = {
       query: formData.get('zipcode'),
       open_now: true,
@@ -36,9 +39,22 @@ export default class OpenRestaurants extends Component {
     }
   }
 
+  handleFilter(event) {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    this.setState({
+      keyword: formData.get('keyword')
+    })
+  }
+
   render() {
     const zipcodeSubmitted = this.state.results ? (
-      <Results zipcode={this.state.zipcode} results={this.state.results} />
+      <Results
+        handleFilter={this.handleFilter}
+        zipcode={this.state.zipcode}
+        results={this.state.results}
+        keyword={this.state.keyword}
+      />
     ) : (
       <SearchBar handleSubmit={this.handleSubmit} />
     )

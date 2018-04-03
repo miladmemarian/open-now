@@ -9,6 +9,7 @@ export default class Results extends Component {
         {result.name + result.formatted_address}
       </li>
     ))
+
     return (
       <div className="container-fluid">
         <div className="row align-items-start">
@@ -17,7 +18,6 @@ export default class Results extends Component {
           <div className="col" />
         </div>
         <div className="row align-items-center">
-          <div className="col" />
           <div className="col">
             <div className="jumbotron">
               <div className="text-center lead">
@@ -26,6 +26,12 @@ export default class Results extends Component {
               </div>
             </div>
             <ul className="list-group list-unstyled">{resultsList}</ul>
+          </div>
+          <div className="col">
+            <form key="Filter" onSubmit={this.props.handleFilter}>
+              <input name="keyword" />
+              <button>Filter</button>
+            </form>
           </div>
           <div className="col" />
         </div>
