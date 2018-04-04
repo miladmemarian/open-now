@@ -3,24 +3,23 @@
 import React, { Component } from 'react'
 
 export default class Results extends Component {
+  filterResults(keyword, results) {
+    return !keyword
+      ? results
+      : results.filter(
+        result =>
+          result.formatted_address.includes(keyword) ||
+            result.name.includes(keyword)
+      )
+  }
+
   render() {
-    const resultsList = this.props.keyword
-      ? this.props.results
-        .filter(
-          result =>
-            result.formatted_address.includes(this.props.keyword) ||
-              result.name.includes(this.props.keyword)
-        )
-        .map(result => (
-          <li className="list-group-item " key={result.id}>
-            {result.name + ' ' + result.formatted_address}
-          </li>
-        ))
-      : this.props.results.map(result => (
-        <li className="list-group-item " key={result.id}>
-          {result.name + ' ' + result.formatted_address}
-        </li>
-      ))
+    const filtered = this.filterResults(this.props.keyword, this.props.results)
+    const resultsList = filtered.map(result => (
+      <li className="list-group-item " key={result.id}>
+        {result.name + ' ' + result.formatted_address}
+      </li>
+    ))
 
     return (
       <div className="container-fluid">
@@ -38,7 +37,7 @@ export default class Results extends Component {
             <div className="card text-center">
               <img
                 className="card-img-top"
-                src={'cardImage.jpeg'}
+                src="cardImage.jpeg"
                 alt="Card image cap"
               />
               <div className="card-body">
