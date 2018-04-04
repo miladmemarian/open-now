@@ -17,6 +17,7 @@ export default class Results extends Component {
     const filtered = this.filterResults(this.props.keyword, this.props.results)
     const resultsList = filtered.map(result => (
       <li className="list-group-item " key={result.id}>
+        <img src={result.photos[0].getUrl({ maxWidth: 50, maxHeigth: 50 })} />
         {result.name + ' ' + result.formatted_address}
       </li>
     ))
