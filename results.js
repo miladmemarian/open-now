@@ -4,25 +4,7 @@ import React, { Component } from 'react'
 import Restaurant from './restaurant'
 
 export default class Results extends Component {
-  filterResults(keyword, results) {
-    return !keyword
-      ? results
-      : results.filter(
-        result =>
-          result.formatted_address.includes(keyword) ||
-            result.name.includes(keyword)
-      )
-  }
-
   render() {
-    const filtered = this.filterResults(this.props.keyword, this.props.results)
-    const resultsList = filtered.map(result => (
-      <li className="list-group-item " key={result.id}>
-        <img src={result.photos[0].getUrl({ maxWidth: 50, maxHeigth: 50 })} />
-        {result.name + ' ' + result.formatted_address}
-      </li>
-    ))
-
     return (
       <div className="container-fluid">
         <div className="row align-items-start">
@@ -33,7 +15,10 @@ export default class Results extends Component {
                 Zipcode: {this.props.zipcode}
               </div>
             </div>
-            <ul className="list-group list-unstyled">{resultsList}</ul>
+            <Restaurant
+              results={this.props.results}
+              keyword={this.props.keyword}
+            />
           </div>
           <div className="col">
             <div className="card text-center">
@@ -68,9 +53,7 @@ export default class Results extends Component {
         <div className="row align-items-center">
           <div className="col" />
           <div className="col" />
-          <div className="col">
-            <Restaurant results={this.props.results} />
-          </div>
+          <div className="col" />
         </div>
         <div className="row align-items-end">
           <div className="col" />
