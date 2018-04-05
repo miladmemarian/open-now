@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { Component } from 'react'
+import Restaurant from './restaurant'
 
 export default class Results extends Component {
   filterResults(keyword, results) {
@@ -67,7 +68,9 @@ export default class Results extends Component {
         <div className="row align-items-center">
           <div className="col" />
           <div className="col" />
-          <div className="col" />
+          <div className="col">
+            <Restaurant results={this.props.results} />
+          </div>
         </div>
         <div className="row align-items-end">
           <div className="col" />
