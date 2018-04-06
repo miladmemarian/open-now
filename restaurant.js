@@ -9,7 +9,7 @@ export default class Restaurant extends Component {
       maxHeight: 200
     })
     return (
-      <div className="col-sm-4" key={this.props.results.id}>
+      <div className="col-sm-3" key={this.props.results.id}>
         <div className="card h-60 border-0 ">
           <div
             style={{

@@ -22,8 +22,7 @@ export default class Results extends Component {
             className="card-body"
             style={{
               height: '50vh',
-              backgroundImage:
-                'url(file:///Users/milad/Downloads/pexels-photo-262978.jpeg)',
+              backgroundImage: 'url(cardImage.jpg)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
